@@ -11,7 +11,7 @@ SELECT * FROM animals WHERE weight_kg BETWEEN 10.40 AND 17.30;
 
 BEGIN;
 UPDATE animals
-SET species = NULL;
+SET species = 'unspecified';
 SELECT * FROM animals;
 ROLLBACK;
 SELECT * FROM animals;
@@ -60,13 +60,11 @@ SELECT neutered, COUNT(*)
 FROM animals
 WHERE escape_attempts > 0
 GROUP BY neutered;
-SELECT neutered,
+SELECT
        MIN(weight_kg),
        MAX(weight_kg)
 FROM animals
-GROUP BY neutered;
-SELECT neutered,
+SELECT
        AVG(escape_attempts)
 FROM animals
 WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31'
-GROUP BY neutered;
