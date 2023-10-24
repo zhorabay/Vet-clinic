@@ -64,7 +64,8 @@ SELECT
        MIN(weight_kg),
        MAX(weight_kg)
 FROM animals
-SELECT
+SELECT species,
        AVG(escape_attempts)
 FROM animals
 WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31'
+GROUP BY species;
