@@ -9,3 +9,6 @@ CREATE TABLE animals (
     weight_kg numeric,
     CONSTRAINT animals_pkey PRIMARY KEY (id)
 );
+
+ALTER TABLE animals
+ADD COLUMN species VARCHAR(50);
