@@ -23,7 +23,7 @@ CREATE TABLE owners (
 CREATE TABLE species (
   id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
   name character(50),
-  CONSTRAINT owners_pkey PRIMARY KEY (id)
+  CONSTRAINT species_pkey PRIMARY KEY (id)
 );
 
 ALTER TABLE animals
@@ -41,3 +41,34 @@ ADD COLUMN owner_id INT,
 ADD CONSTRAINT owners_fkey
 FOREIGN KEY (owner_id)
 REFERENCES owners(id);
+
+CREATE TABLE vets (
+  id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+  name character(50),
+  age integer,
+  date_of_graduation date,
+  CONSTRAINT vets_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE specializations (
+    species_id integer,
+    vets_id integer,
+    CONSTRAINT species_id_fkey 
+    FOREIGN KEY (species_id)
+    REFERENCES public.species (id),
+    CONSTRAINT vets_id_fkey 
+    FOREIGN KEY (vets_id)
+    REFERENCES public.vets (id) 
+)
+
+CREATE TABLE visits (
+    animals_id integer,
+    vets_id integer,
+    date_of_visits date,
+    CONSTRAINT animals_visit_fkey 
+    FOREIGN KEY (animals_id)
+    REFERENCES public.animals (id),
+    CONSTRAINT vets_visit_fkey 
+    FOREIGN KEY (vets_id)
+    REFERENCES public.vets (id)
+)
