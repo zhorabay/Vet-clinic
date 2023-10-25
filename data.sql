@@ -25,3 +25,41 @@ INSERT INTO public.animals(
 	('Boarmon', '2005-06-07', '7', true, '20.40'),
 	('Blossom', '1998-10-13', '3', true, '17.00'),
 	('Ditto', '2022-05-14', '4', true, '22.00');
+
+INSERT INTO public.owners(
+	full_name, age)
+	VALUES ('Sam Smith', '34'),
+	('Jennifer Orwell', '19'),
+	('Bob', '45'),
+	('Melody Pond', '77'),
+	('Dean Winchester', '14'),
+	('Jodie Whittaker', '38');
+
+INSERT INTO public.species(
+	name)
+	VALUES ('Pokemon'),
+	('Digimon);
+
+UPDATE animals
+SET species_id = species.id
+FROM species
+WHERE
+    (animals.name LIKE '%mon%' AND species.name = 'Digimon')
+    OR
+    (animals.species_id IS NULL AND species.name = 'Pokemon');
+
+SELECT * FROM animals;
+	
+UPDATE animals
+SET owner_id = owners.id
+FROM owners
+WHERE
+    CASE
+        WHEN animals.name = 'Agumon' THEN owners.full_name = 'Sam Smith'
+        WHEN animals.name IN ('Gabumon', 'Pikachu') THEN owners.full_name = 'Jennifer Orwell'
+        WHEN animals.name IN ('Devimon', 'Plantmon') THEN owners.full_name = 'Bob'
+        WHEN animals.name IN ('Charmander', 'Squirtle', 'Blossom') THEN owners.full_name = 'Melody Pond'
+        WHEN animals.name IN ('Angemon', 'Boarmon') THEN owners.full_name = 'Dean Winchester'
+    END;
+	
+SELECT * FROM animals;
