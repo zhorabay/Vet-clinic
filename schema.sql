@@ -12,3 +12,16 @@ CREATE TABLE animals (
 
 ALTER TABLE animals
 ADD COLUMN species VARCHAR(50);
+
+CREATE TABLE owners (
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+    full_name character(50),
+    age integer,
+    CONSTRAINT owners_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE species (
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+    name character(50),
+    CONSTRAINT owners_pkey PRIMARY KEY (id)
+);
