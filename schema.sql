@@ -72,3 +72,11 @@ CREATE TABLE visits (
     FOREIGN KEY (vets_id)
     REFERENCES public.vets (id)
 )
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+ALTER TABLE owners ALTER COLUMN age DROP NOT NULL;
+
+CREATE INDEX idx_animals_id ON visits(animals_id);
+CREATE INDEX idx_vets_id ON visits(vets_id);
+CREATE INDEX idx_email ON owners(email);
